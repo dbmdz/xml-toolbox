@@ -19,15 +19,15 @@
   },
   "packageRules":[
     {
-      "packageNames": ["fmt-maven-plugin"],
-      "version": "2.25"
-    },
-    {
       "groupName":"all dependencies",
       "groupSlug":"all",
       "matchPackageNames":[
         "*"
       ]
+    },
+    {
+      "matchPackageNames": ["fmt-maven-plugin"],
+      "enabled": false
     }
   ],
   "schedule": [
