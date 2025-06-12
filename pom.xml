@@ -4,7 +4,7 @@
 
   <groupId>dev.mdz</groupId>
   <artifactId>xml-toolbox</artifactId>
-  <version>5.0.0</version>
+  <version>6.0.0</version>
   <packaging>jar</packaging>
 
   <name>XML Toolbox</name>
@@ -13,7 +13,7 @@
   <licenses>
     <license>
       <name>MIT License</name>
-      <url>https://github.com/dbmdz/iiif-apis/blob/master/LICENSE</url>
+      <url>https://github.com/dbmdz/xml-toolbox/blob/master/LICENSE</url>
       <distribution>repo</distribution>
     </license>
   </licenses>
