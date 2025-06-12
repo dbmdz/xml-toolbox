@@ -1,6 +1,6 @@
-# DigitalCollections Commons XML
+# XML Toolbox
 
-Commons XML contains several utilities for processing XML files. Most important is `XPathWrapper`, which allows easy querying of XML files:
+XML Toolbox contains several utilities for processing XML files. Most important is `XPathWrapper`, which allows easy querying of XML files:
 
 ```
 // ... get a org.w3c.dom.Document for your XML as 'doc'.

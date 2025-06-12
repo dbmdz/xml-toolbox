@@ -1,0 +1,10 @@
+**/target/
+**/nbactions.xml
+**/nbproject/
+**/nb-configuration.xml
+**/*.iml
+.idea/
+**/.settings
+**/.classpath
+**/.project
+**/.dbeaver
