@@ -27,7 +27,7 @@
     },
     {
       "matchPackageNames": [
-        "fmt-maven-plugin"
+        "com.spotify.fmt:fmt-maven-plugin"
       ],
       "enabled": false
     }
