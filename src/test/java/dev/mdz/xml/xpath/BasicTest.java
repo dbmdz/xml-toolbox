@@ -9,6 +9,7 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
+import net.sf.saxon.om.NamespaceUri;
 import net.sf.saxon.xpath.XPathEvaluator;
 import net.sf.saxon.xpath.XPathFactoryImpl;
 import org.junit.jupiter.api.Assertions;
@@ -32,7 +33,7 @@ public class BasicTest {
     XPath xpath = xPathFactory.newXPath();
     ((XPathEvaluator) xpath)
         .getStaticContext()
-        .setDefaultElementNamespace(DigitalCollectionsNamespaceContext.TEI_NS_URI);
+        .setDefaultElementNamespace(NamespaceUri.of(DigitalCollectionsNamespaceContext.TEI_NS_URI));
     XPathExpression expr = xpath.compile("/TEI/teiHeader/fileDesc/titleStmt/title");
     try {
       String title = (String) expr.evaluate(doc, XPathConstants.STRING);

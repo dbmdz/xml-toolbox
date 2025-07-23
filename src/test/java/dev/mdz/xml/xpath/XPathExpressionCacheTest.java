@@ -2,7 +2,6 @@ package dev.mdz.xml.xpath;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import dev.mdz.xml.xpath.XPathExpressionCache;
 import javax.xml.xpath.XPathExpressionException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

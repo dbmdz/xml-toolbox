@@ -2,7 +2,6 @@ package dev.mdz.xml.xpath;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import dev.mdz.xml.xpath.XPathWrapper;
 import java.io.InputStream;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
