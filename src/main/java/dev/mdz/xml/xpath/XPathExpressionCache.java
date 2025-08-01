@@ -10,6 +10,7 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
+import net.sf.saxon.om.NamespaceUri;
 import net.sf.saxon.xpath.XPathEvaluator;
 import net.sf.saxon.xpath.XPathFactoryImpl;
 
@@ -29,7 +30,8 @@ public class XPathExpressionCache {
     xpath.setNamespaceContext(namespaceCtx);
     ((XPathEvaluator) xpath)
         .getStaticContext()
-        .setDefaultElementNamespace(namespaceCtx.getNamespaceURI(XMLConstants.DEFAULT_NS_PREFIX));
+        .setDefaultElementNamespace(
+            NamespaceUri.of(namespaceCtx.getNamespaceURI(XMLConstants.DEFAULT_NS_PREFIX)));
   }
 
   public XPathExpression get(String expression) {
@@ -70,7 +72,8 @@ public class XPathExpressionCache {
       xpath.setNamespaceContext(namespaceCtx);
       ((XPathEvaluator) xpath)
           .getStaticContext()
-          .setDefaultElementNamespace(namespaceCtx.getNamespaceURI(XMLConstants.DEFAULT_NS_PREFIX));
+          .setDefaultElementNamespace(
+              NamespaceUri.of(namespaceCtx.getNamespaceURI(XMLConstants.DEFAULT_NS_PREFIX)));
     }
   }
 }

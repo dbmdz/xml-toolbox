@@ -2,7 +2,6 @@ package dev.mdz.xml.xpath;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import dev.mdz.xml.xpath.DocumentReader;
 import java.util.Locale;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

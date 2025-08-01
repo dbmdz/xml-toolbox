@@ -1,7 +1,5 @@
 package dev.mdz.xml.xpath;
 
-import dev.mdz.xml.xpath.XPathMapper;
-import dev.mdz.xml.xpath.XPathMappingException;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.xml.parsers.DocumentBuilder;
