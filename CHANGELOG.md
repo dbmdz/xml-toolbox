@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## [7.0.0](https://github.com/dbmdz/xml-toolbox/releases/tag/7.0.0) - 2025-08-05
+
 ### Changed
 
 - Major dependency updates (SaxonHE, SLF4J, Guava)
