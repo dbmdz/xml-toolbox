@@ -1,6 +1,7 @@
 package dev.mdz.xml.xpath;
 
 import com.google.common.reflect.TypeToken;
+import dev.mdz.xml.xpath.XPathMapper.NestedField.BooleanField;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.annotation.Annotation;
@@ -137,6 +138,19 @@ public class XPathMapper<T> {
       fields.add(
           new NestedField(
               fl, nestedRoot.value(), determineNamespace(this.defaultRootNamespace, nestedRoot)));
+    }
+
+    // Determine all setters and fields that map boolean flags, i.e. that are annotated with
+    // @XPathBoolean
+    for (Method m : getSettersAnnotatedWith(targetType, XPathBoolean.class)) {
+      XPathBoolean xb = m.getDeclaredAnnotation(XPathBoolean.class);
+
+      fields.add(new BooleanField(m, xb.expression()));
+    }
+
+    for (Field fl : getFieldsAnnotatedWith(targetType, XPathBoolean.class)) {
+      XPathBoolean xb = fl.getDeclaredAnnotation(XPathBoolean.class);
+      fields.add(new BooleanField(fl, xb.expression()));
     }
   }
 
@@ -487,6 +501,30 @@ public class XPathMapper<T> {
         return vals;
       } else {
         return null;
+      }
+    }
+
+    /**
+     * Field that evaluates to true if the XPath yields any result (node existence check), and false
+     * otherwise. Handles namespace context from the DocumentReader.
+     */
+    public static final class BooleanField extends MappedField {
+      private final String path;
+
+      public BooleanField(Method m, String path) {
+        super(m);
+        this.path = path;
+      }
+
+      public BooleanField(Field fl, String path) {
+        super(fl);
+        this.path = path;
+      }
+
+      @Override
+      protected Object determineValue(DocumentReader r) throws XPathMappingException {
+        List<Element> elements = r.readElementList(Arrays.asList(path));
+        return elements != null && !elements.isEmpty();
       }
     }
   }
