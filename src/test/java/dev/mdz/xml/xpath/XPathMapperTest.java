@@ -38,8 +38,8 @@ public class XPathMapperTest {
           new XPathMapperFixture<>(WrongMultilanguageArgumentTestMapper.class);
   XPathMapperFixture<HierarchicalMapper> hierarchicalMapperFixture =
       new XPathMapperFixture<>(HierarchicalMapper.class);
-  XPathMapperFixture<BrokenHierarchicalMapper> brokenHierarchivalMapperFixture =
-      new XPathMapperFixture<>(BrokenHierarchicalMapper.class);
+  XPathMapperFixture<XPathBooleanTestMapper> xPathBooleanTestMapperFixture =
+      new XPathMapperFixture<>(XPathBooleanTestMapper.class);
 
   @DisplayName("shall evaluate a template with a single variable for a field")
   @Test
@@ -78,6 +78,26 @@ public class XPathMapperTest {
 
     TestMapper mapper2 = testMapperFixture.setUpMapperWithResource("simple.xml");
     assertThat(mapper2.containsAuthors()).isFalse();
+  }
+
+  @DisplayName("shall evaluate @XPathBoolean annotations correctly (existence check)")
+  @Test
+  public void testXPathBoolean() throws Exception {
+    // bsbstruc.xml has <monogr>, but no <analytic> under biblStruct
+    XPathBooleanTestMapper mapper =
+        xPathBooleanTestMapperFixture.setUpMapperWithResource("bsbstruc.xml");
+
+    // 1. Element exists in namespace (monogr) -> true
+    assertThat(mapper.hasMonogr).as("Monograph element should be present").isTrue();
+
+    // 2. Element does NOT exist (analytic) -> false
+    assertThat(mapper.hasAnalytic).as("Analytic element should be missing").isFalse();
+
+    // 3. Root element exists (TEI) -> true
+    assertThat(mapper.hasRoot).as("Root TEI element should be present").isTrue();
+
+    // 3. Root element exists (TEI) -> true
+    assertThat(mapper.hasNonExistent).as("Non-existent element should be false").isFalse();
   }
 
   @DisplayName("shall evaluate correct title mapping")
@@ -444,6 +464,22 @@ public class XPathMapperTest {
     public String getFirstPersNameNode() {
       return firstPersNameNode;
     }
+  }
+
+  @XPathRoot(defaultNamespace = "http://www.tei-c.org/ns/1.0")
+  public static class XPathBooleanTestMapper {
+
+    @XPathBoolean(BIBLSTRUCT_PATH + "/monogr")
+    boolean hasMonogr;
+
+    @XPathBoolean(BIBLSTRUCT_PATH + "/analytic")
+    boolean hasAnalytic;
+
+    @XPathBoolean("/TEI")
+    boolean hasRoot;
+
+    @XPathBoolean("/TEI/doesNotExist")
+    boolean hasNonExistent;
   }
 
   @XPathRoot(defaultNamespace = "http://www.tei-c.org/ns/1.0")
