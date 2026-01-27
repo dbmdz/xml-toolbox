@@ -9,12 +9,11 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD, ElementType.METHOD})
 public @interface XPathBoolean {
 
-    String expression();
-
   /**
-   * The default namespace is only allowed on type level, not on methods.
+   * Maps a boolean field to the existence of an XML node.
    *
-   * @return the default namespace, e.g. <code>http://www.tei-c.org/ns/1.0"</code> (optional)
+   * <p>If the XPath expression yields at least one matching node, the field is set to {@code true},
+   * otherwise {@code false}.
    */
-  String defaultNamespace() default "";
+  String value();
 }

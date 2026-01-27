@@ -145,12 +145,12 @@ public class XPathMapper<T> {
     for (Method m : getSettersAnnotatedWith(targetType, XPathBoolean.class)) {
       XPathBoolean xb = m.getDeclaredAnnotation(XPathBoolean.class);
 
-      fields.add(new BooleanField(m, xb.expression()));
+      fields.add(new BooleanField(m, xb.value()));
     }
 
     for (Field fl : getFieldsAnnotatedWith(targetType, XPathBoolean.class)) {
       XPathBoolean xb = fl.getDeclaredAnnotation(XPathBoolean.class);
-      fields.add(new BooleanField(fl, xb.expression()));
+      fields.add(new BooleanField(fl, xb.value()));
     }
   }
 
