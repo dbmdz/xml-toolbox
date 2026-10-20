@@ -56,7 +56,7 @@ jobs:
       - name: Extract project version
         run: echo "PROJECT_VERSION=$(xmllint --xpath '/*[local-name()="project"]/*[local-name()="version"]/text()' pom.xml)" >> $GITHUB_ENV
       # Publish snapshot
-      - name: Set up JDK 11 for publishing a snapshot
+      - name: Set up JDK 17 for publishing a snapshot
         if: github.event_name == 'push' && endswith(env.PROJECT_VERSION, 'SNAPSHOT')
         uses: actions/setup-java@v6
         with:
@@ -73,7 +73,7 @@ jobs:
           MAVEN_PASSWORD: ${{ secrets.CENTRAL_PASSWORD }}
           MAVEN_USERNAME: ${{ secrets.CENTRAL_USERNAME }}
       # Publish release
-      - name: Set up JDK 11 for publishing a release
+      - name: Set up JDK 17 for publishing a release
         if: github.event_name == 'release' && !endswith(env.PROJECT_VERSION, 'SNAPSHOT')
         uses: actions/setup-java@v6
         with:
