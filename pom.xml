@@ -65,7 +65,7 @@
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <version>33.7.2-jre</version>
+      <version>33.8.0-jre</version>
     </dependency>
     <dependency>
       <groupId>net.sf.saxon</groupId>
@@ -114,7 +114,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.6.0</version>
+        <version>3.6.1</version>
       </plugin>
       <plugin>
         <groupId>org.sonatype.central</groupId>
